@@ -1,56 +1,98 @@
-  <!DOCTYPE html>                                                                                        
-  <html lang="en">                                                                                       
-  <head>                                                                                                 
-      <meta charset="UTF-8">                                                                             
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">                             
-      <title>Daily Challenge</title>                                                                     
-      <link rel="stylesheet" href="/style.css">                                                           
-  </head>                                                                                                
-  <body>                                                                                                 
-      <div class="container">                                                                            
-          <header>                                                                                       
-              <h1>Daily Challenge</h1>                                                                   
-              <div id="auth-section">                                                                    
-                  <span id="user-email"></span>                                                          
-                  <button id="logout-btn" class="hidden">Logout</button>                                 
-              </div>                                                                                     
-          </header>                                                                                      
-                                                                                                         
-          <!-- Auth Forms -->                                                                            
-          <div id="auth-forms">                                                                          
-              <div class="auth-box">                                                                     
-                  <h2>Login</h2>                                                                         
-                  <input type="email" id="login-email" placeholder="Email">                              
-                  <input type="password" id="login-password" placeholder="Password">                     
-                  <button onclick="login()">Login</button>                                               
-              </div>                                                                                     
-              <div class="auth-box">                                                                     
-                  <h2>Sign Up</h2>                                                                       
-                  <input type="email" id="signup-email" placeholder="Email">                             
-                  <input type="password" id="signup-password" placeholder="Password">                    
-                  <button onclick="signup()">Sign Up</button>                                            
-              </div>                                                                                     
-          </div>                                                                                         
-                                                                                                         
-          <!-- Question Section (hidden until logged in) -->                                             
-          <main id="app" class="hidden">                                                                         
-      <div id="score-display">Score: <span id="score">-</span></div>
-      <div id="progress-bar">Question 1 of 10</div>
-      <div id="difficulty-selector" class="hidden">
-          <label>Difficulty: </label>
-          <select id="difficulty">
-              <option value="easy">Easy 🌱</option>
-              <option value="medium" selected>Medium 🔥</option>
-              <option value="hard">Hard 💀</option>                                                      
-          </select>
-      </div>                                                                                             
-      <div id="question-area">
-          <div id="loading">Loading questions...</div>
-      </div>
-  </main>                                                                                          
-                                                                                                         
-      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>                       
-      <script src="app.js"></script>                                                                     
-  </body>                                                                                                
-  </html>                                                                              
-                               
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated background grid -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-name">Daily Challenge</span>
+            </div>
+            <div id="auth-section">
+                <span id="user-email"></span>
+                <button id="logout-btn" class="btn btn-ghost hidden">Logout</button>
+            </div>
+        </header>
+
+        <!-- Hero / Auth Area -->
+        <div id="auth-forms">
+            <div class="hero-section">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    New questions every day
+                </div>
+                <h1 class="hero-title">
+                    Test your knowledge.
+                    <span class="rotating-word-wrapper">
+                        <span class="rotating-word" id="rotating-word">Daily.</span>
+                    </span>
+                </h1>
+                <p class="hero-sub">10 questions. Multiple difficulties. Shareable results. Are you up for it?</p>
+            </div>
+
+            <div class="auth-grid">
+                <div class="auth-box">
+                    <div class="auth-box-label">Login</div>
+                    <input type="email" id="login-email" placeholder="Email address" autocomplete="email">
+                    <input type="password" id="login-password" placeholder="Password" autocomplete="current-password">
+                    <button class="btn btn-primary" onclick="login()">Login <span class="btn-arrow">→</span></button>
+                </div>
+                <div class="auth-divider"><span>or</span></div>
+                <div class="auth-box">
+                    <div class="auth-box-label">Sign Up</div>
+                    <input type="email" id="signup-email" placeholder="Email address" autocomplete="email">
+                    <input type="password" id="signup-password" placeholder="Choose a password" autocomplete="new-password">
+                    <button class="btn btn-outline" onclick="signup()">Sign Up <span class="btn-arrow">→</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- App (hidden until logged in) -->
+        <main id="app" class="hidden">
+            <div class="app-topbar">
+                <div id="score-display">Score: <span id="score">—</span></div>
+                <div id="difficulty-selector" class="hidden">
+                    <select id="difficulty">
+                        <option value="easy">🌱 Easy</option>
+                        <option value="medium" selected>🔥 Medium</option>
+                        <option value="hard">💀 Hard</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="progress-bar">
+                <div class="progress-label">Question <span id="progress-current">1</span> of <span id="progress-total">10</span></div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <div id="question-area">
+                <div id="loading">
+                    <div class="spinner"></div>
+                    <span>Loading your challenge…</span>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
