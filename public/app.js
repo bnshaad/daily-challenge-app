@@ -196,18 +196,7 @@ async function submitAnswer(answer) {
     // Store result
     answers[currentIndex]        = answer;
     correctAnswers[currentIndex] = result.correct;
-    // Show correct answer in feedback                                                                     
-  const q = sessionData.questions[currentIndex];                                                         
-  const letters = ['A', 'B', 'C', 'D'];                                                                  
-  const correctLetter = q.correct_answer; // Get from question data                                      
-                                                                                                         
-  const resultDiv = document.getElementById('result');                                                   
-  if (result.correct) {                                                                                  
-      resultDiv.innerHTML = '<div class="result correct">✅ Correct!</div>';                             
-  } else {                                                                                               
-      resultDiv.innerHTML = `<div class="result incorrect">❌ Wrong! The correct answer was              
-  ${correctLetter}</div>`;                                                                               
-  }                
+  
     // Style correct / incorrect button
     document.querySelectorAll('.option-btn').forEach(btn => {
         const letter = btn.querySelector('span')?.textContent?.trim();
