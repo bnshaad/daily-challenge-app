@@ -644,3 +644,57 @@ input:focus {
     .results-card  { padding: 32px 20px; }
     .score-display { font-size: 3.8rem; }
 }
+/* Google Sign In Box */                                                                               
+  .google-box {                                                                                          
+      grid-column: 1 / -1;                                                                               
+      display: flex;                                                                                     
+      flex-direction: column;                                                                            
+      align-items: center;                                                                               
+      padding: 20px;                                                                                     
+  }                                                                                                      
+                                                                                                         
+  .google-box .auth-divider {                                                                            
+      width: 100%;                                                                                       
+      margin-bottom: 16px;                                                                               
+  }                                                                                                      
+                                                                                                         
+  /* Google Button */                                                                                    
+  .btn-google {   
+      display: flex;
+      align-items: center;                                                                               
+      justify-content: center;                                                                           
+      gap: 12px;                                                                                         
+      background: white;                                                                                 
+      color: #444;
+      border: 1px solid #ddd;
+      padding: 12px 24px;
+      width: 100%;
+      max-width: 280px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;                                                                                
+      border-radius: var(--radius-sm);                                                                   
+      cursor: pointer;                                                                                   
+      transition: all 0.2s ease;                                                                         
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }                                                                                                      
+   
+  .btn-google:hover {                                                                                    
+      background: #f8f8f8;
+      border-color: #ccc;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      transform: translateY(-1px);                                                                       
+  }
+                                                                                                         
+  .google-icon {  
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 560px) {
+      .btn-google {
+          max-width: 100%;
+      }
+  }
