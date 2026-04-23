@@ -210,7 +210,11 @@
       });                                                                                                
   });                                          
                                                                                               
-  // Start server                                                                                        
-  app.listen(PORT, () => {                                                                               
-      console.log('Server running at http://localhost:' + PORT);                                         
-  });                                  
+  // Start server only when running directly (not on Vercel)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log('Server running at http://localhost:' + PORT);
+    });
+}
+
+module.exports = app;                                

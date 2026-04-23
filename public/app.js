@@ -210,7 +210,8 @@ async function submitAnswer(answer) {
     if (result.correct) {
         resultDiv.innerHTML = '<div class="result correct">✅ Correct!</div>';
     } else {
-        resultDiv.innerHTML = `<div class="result incorrect">❌ The answer was: ${result.correct_answer}</div>`;
+        const correctAnswer = q.correct_answer ?? result.correct_answer;
+        resultDiv.innerHTML = `<div class="result incorrect">❌ The answer was: ${correctAnswer ?? '—'}</div>`;
     }
 
     // Advance after 1.5 s
